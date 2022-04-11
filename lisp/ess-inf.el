@@ -640,7 +640,9 @@ the name of the inferior process (e.g. \"R:1\"), and DIALECT is
 the language dialect (e.g. \"R\")."
   (let ((default-dir (inferior-ess--get-startup-directory)))
     (if ess-ask-for-ess-directory
-        (let ((prompt (format "%s starting project directory? " procname)))
+        ;; hack to let helm display a buffer
+        (let ((prompt (format "%s starting project directory? " procname))
+              (display-buffer-overriding-action nil)) 
           (ess-prompt-for-directory default-dir prompt))
       default-dir)))
 
